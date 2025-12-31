@@ -1,0 +1,44 @@
+name: Deploy Quartz Site
+on:
+  push:
+    branches:
+      - v4
+
+permissions: 
+  content: read
+  pages: write
+  id-token: write
+
+concurrency: 
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Fetch all history for git info
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install Dependencies
+        run: npm ci
+      - name: Build Quartz
+        run: npx quartz build
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+      # Create Credentials and get your site ID in the Worktree Cloud console,
+      # then you're ready to deploy!
+      - name: Deploy to Worktree Cloud Sites
+        uses: worktree/deploy-site@v2
+        with:
+          source: ./public
+          site_id: DdogiMYyHGcfgoUgZmkszU
+          # Match names of secrets from step 5a
+          public_key: ${{ secrets.WT_CLOUD_PUBLIC_KEY }}
+          secret_key: ${{ secrets.WT_CLOUD_SECRET_KEY }}
