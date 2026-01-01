@@ -29,10 +29,6 @@ jobs:
     #Build your site
       - name: Build Quartz
         run: npx quartz build
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: public
 
       # Create Credentials and get your site ID in the Worktree Cloud console,
       # then you're ready to deploy!
