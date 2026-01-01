@@ -27,7 +27,7 @@ jobs:
       - name: Install Dependencies
         run: npm ci
     #Build your site
-      - name: Build Quartz
+      - name: Build
         run: npx quartz build
 
       # Create Credentials and get your site ID in the Worktree Cloud console,
