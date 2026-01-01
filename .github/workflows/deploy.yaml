@@ -15,10 +15,9 @@ concurrency:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
-      - name: Check out repository code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0 # Fetch all history for git info
       - uses: actions/setup-node@v4
@@ -29,16 +28,14 @@ jobs:
     #Build your site
       - name: Build
         run: npx quartz build
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact#v3
+        with:
+          path: public
 
       # Create Credentials and get your site ID in the Worktree Cloud console,
       # then you're ready to deploy!
-        deploy:
-          needs: build
-          environment:
-            name: Worktree-Cloud
-            url: ${{ steps.deployment.outputs.page_url }}
-        steps: 
-        - name: Deploy to Worktree Cloud Sites
+      - name: Deploy to Worktree Cloud Sites
         uses: worktree/deploy-site@v2
         with:
           source: ./public
