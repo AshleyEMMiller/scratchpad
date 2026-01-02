@@ -9,7 +9,7 @@ import * as Plugin from "./quartz/plugins"
 const config: QuartzConfig = {
   configuration: {
     pageTitle: "Scratchpad",
-    pageTitleSuffix: "",
+    pageTitleSuffix: "A digital commonplace book",
     enableSPA: true,
     enablePopovers: true,
     analytics: {
@@ -23,8 +23,8 @@ const config: QuartzConfig = {
       fontOrigin: "googleFonts",
       cdnCaching: true,
       typography: {
-        header: "Schibsted Grotesk",
-        body: "Source Sans Pro",
+        header: "Fraunces",
+        body: "Outfit",
         code: "IBM Plex Mono",
       },
       colors: {
