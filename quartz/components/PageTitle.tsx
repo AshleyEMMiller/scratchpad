@@ -6,8 +6,12 @@ import { i18n } from "../i18n"
 const PageTitle: QuartzComponent = ({ fileData, cfg, displayClass }: QuartzComponentProps) => {
   const title = cfg?.pageTitle ?? i18n(cfg.locale).propertyDefaults.title
   const baseDir = pathToRoot(fileData.slug!)
+  const iconPath = joinSegments(baseDir, "static/logo.png")
   return (
     <h2 class={classNames(displayClass, "page-title")}>
+      <a href={baseDir}>
+        <img class="Logo" src={iconPath} />
+        </a>
       <a href={baseDir}>{title}</a>
     </h2>
   )
@@ -18,6 +22,7 @@ PageTitle.css = `
   font-size: 1.75rem;
   margin: 0;
   font-family: var(--titleFont);
+  color: "D11348"
 }
 `
 
