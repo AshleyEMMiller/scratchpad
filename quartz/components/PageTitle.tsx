@@ -22,7 +22,7 @@ PageTitle.css = `
   font-size: 1.75rem;
   margin: 0;
   font-family: var(--titleFont);
-  color: "D11348"
+  color: "#D11348"
 }
 `
 
